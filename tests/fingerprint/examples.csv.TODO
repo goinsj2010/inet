@@ -1,18 +1,7 @@
 # Errors:
 /examples/inet/configurator/,        -f complex.ini -c General -r 0,                100s,            b98b-79e7/tplx, PASS, wireless
-#/examples/inet/netperfmeter/,        -f omnetpp.ini -c TraceFile -r 0,              100s,            5ef8-7bf0/tplx, ERROR,
-#/examples/inet/netperfmeter/,        -f omnetpp.ini -c SCTP-with-OLIA -r 0,         100s,            95bf-a156/tplx, ERROR,
 /examples/inet/pcaprecorder/,        -f omnetpp.ini -c General -r 0,                5000s,           f707-85a9/tplx, PASS,
 /examples/inet/routerperf/,          -f omnetpp.ini -c General -r 0,                100s,            9c6b-d207/tplx, PASS,
-#/examples/ipv6/nclients/,            -f omnetpp.ini -c PPP_SCTP -r 0,               100s,            660d-2a8a/tplx, ERROR,
-#/examples/manetrouting/dymo/,        -f omnetpp.ini -c DynamicIPv6 -r 0,            22s,             5fe9-22ea/tplx, ERROR, wireless adhoc # IPv6: Shutdown not supported
-#/examples/manetrouting/gpsr/,        -f omnetpp.ini -c DynamicIPv6 -r 0,            20s,             0000-0000/tplx, ERROR, wireless adhoc # This module doesn't support starting in node DOWN state
-#/examples/mpls/net37/,               -f omnetpp.ini -c General -r 0,                100s,            0000-0000/tplx, ERROR,    # <!> Error in module (TED) R37.LSR0.ted (id=45) during network initialization: Model error: ASSERT: condition !remote.isUnspecified() false in function initialize, networklayer/ted/TED.cc line 86.
-#/examples/sctp/cmttest/,             -f omnetpp.ini -c General -r 0,                100s,            49a4-6b81/tplx, ERROR,
-#/examples/sctp/multihomed/,          -f omnetpp.ini -c General -r 0,                500s,            6a4c-81b2/tplx, ERROR,
-#/examples/sctp/nclients/,            -f omnetpp.ini -c General -r 0,                500s,            ead4-4685/tplx, ERROR,
-/examples/wireless/layered80211/,    -f omnetpp.ini -c LayeredCompliant80211Ping -r 0, 100s,      4a9f-d626/tplx, PASS, wireless
-/examples/wireless/layered80211/,    -f omnetpp.ini -c LayeredNonCompliant80211Ping -r 0, 100s,   9827-112b/tplx, PASS, wireless
 /examples/wireless/layeredapsk/,     -f omnetpp.ini -c General -r 0,                100s,            48a0-8b5c/tplx, PASS, wireless
 /examples/wireless/nic/,             -f omnetpp.ini -c LMacWithUnitDiskRadio -r 0,                100s,     1494-ab3a/tplx, PASS, wireless
 /examples/wireless/nic/,             -f omnetpp.ini -c LMacWithApskScalarRadio -r 0,              100s,     1c7b-d21e/tplx, PASS, wireless
