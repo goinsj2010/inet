@@ -43,7 +43,8 @@ void Icmpv6Dissector::dissect(Packet *packet, ICallback& callback) const
     }
     else {
         // ICMPv6 INFO packets (e.g. ping), ICMPv6 Neighbour Discovery
-        callback.dissectPacket(packet, nullptr);
+        if (packet->getDataLength() > b(0))
+            callback.dissectPacket(packet, nullptr);
     }
     callback.endProtocolDataUnit(&Protocol::icmpv6);
 }
