@@ -20,6 +20,7 @@
 #include "inet/physicallayer/apskradio/packetlevel/ApskDissector.h"
 
 #include "inet/common/ProtocolGroup.h"
+#include "inet/common/packet/chunk/BitCountChunk.h"
 #include "inet/common/packet/dissector/ProtocolDissectorRegistry.h"
 #include "inet/physicallayer/apskradio/packetlevel/ApskPhyHeader_m.h"
 
@@ -33,6 +34,15 @@ void ApskDissector::dissect(Packet *packet, ICallback& callback) const
     auto header = packet->popHeader<ApskPhyHeader>();
     callback.startProtocolDataUnit(&Protocol::apskPhy);
     callback.visitChunk(header, &Protocol::apskPhy);
+
+    //FIXME KLUDGE: remove PhyPadding if exists
+    auto chunk = packet->peekHeader();
+    if (dynamicPtrCast<const BitCountChunk>(chunk)) {
+        auto padding = packet->popHeader<BitCountChunk>(chunk->getChunkLength());
+        callback.visitChunk(padding, &Protocol::apskPhy);
+    }
+    // end of KLUDGE
+
     auto payloadProtocol = header->getPayloadProtocol();
     callback.dissectPacket(packet, payloadProtocol);
     ASSERT(packet->getDataLength() == B(0));
