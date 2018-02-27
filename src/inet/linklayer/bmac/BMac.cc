@@ -209,7 +209,7 @@ void BMac::sendPreamble()
     preamble->setChunkLength(headerLength);
 
     //attach signal and send down
-    auto packet = new Packet();
+    auto packet = new Packet("Preamble", preamble);
     packet->setKind(BMAC_PREAMBLE);
     packet->insertHeader(preamble);
     attachSignal(packet);

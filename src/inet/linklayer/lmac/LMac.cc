@@ -493,6 +493,7 @@ void LMac::handleSelfMessage(cMessage *msg)
                 Packet *packet = new Packet();
                 packet->setKind(LMAC_CONTROL);
                 packet->insertHeader(control);
+                packet->setName("Control");
                 sendDown(packet);
                 if ((macQueue.size() > 0) && (!SETUP_PHASE))
                     scheduleAt(simTime() + controlDuration, sendData);
@@ -509,6 +510,7 @@ void LMac::handleSelfMessage(cMessage *msg)
                 Packet *data = new Packet();
                 data->insertAtEnd(macQueue.front()->peekAt(headerLength));
                 data->setKind(LMAC_DATA);
+                data->setName("Data");
                 const auto& lmacHeader = staticPtrCast<LMacHeader>(macQueue.front()->peekHeader<LMacHeader>()->dupShared());
                 lmacHeader->setMySlot(mySlot);
                 lmacHeader->setOccupiedSlotsArraySize(numSlots);
