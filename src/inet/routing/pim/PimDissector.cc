@@ -32,7 +32,9 @@ void PimDissector::dissect(Packet *packet, ICallback& callback) const
     auto header = packet->popHeader<PimPacket>();
     callback.startProtocolDataUnit(&Protocol::pim);
     callback.visitChunk(header, &Protocol::pim);
-    ASSERT(packet->getDataLength() == B(0));
+    if (packet->getDataLength() > b(0))
+        callback.dissectPacket(packet, nullptr);        //TODO interpret payloads correctly
+    ASSERT(packet->getDataLength() == b(0));
     callback.endProtocolDataUnit(&Protocol::pim);
 }
 
