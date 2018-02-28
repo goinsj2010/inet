@@ -32,6 +32,9 @@ void EchoDissector::dissect(Packet *packet, ICallback& callback) const
     auto header = packet->popHeader<EchoPacket>();
     callback.startProtocolDataUnit(&Protocol::echo);
     callback.visitChunk(header, &Protocol::echo);
+    if (packet->getDataLength() > b(0))
+        callback.dissectPacket(packet, nullptr);
+    ASSERT(packet->getDataLength() == B(0));
     callback.endProtocolDataUnit(&Protocol::echo);
 }
 
